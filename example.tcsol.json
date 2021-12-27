@@ -1,0 +1,130 @@
+{
+  "$schema": "tcsol.json",
+  "inputs": [
+    0,
+    15,
+    51,
+    85,
+    255
+  ],
+  "outputs": [
+    105,
+    23
+  ],
+  "gates": [
+    {
+      "gate_type": "or",
+      "truth_table": 105,
+      "sources": [
+        9,
+        96
+      ]
+    },
+    {
+      "gate_type": "or",
+      "truth_table": 127,
+      "sources": [
+        15,
+        51,
+        85
+      ]
+    },
+    {
+      "gate_type": "nand",
+      "truth_table": 65408,
+      "delay": 2,
+      "sources": [
+        127,
+        127
+      ]
+    },
+    {
+      "gate_type": "or",
+      "truth_table": 95,
+      "sources": [
+        15,
+        85
+      ]
+    },
+    {
+      "gate_type": "nand",
+      "truth_table": 65516,
+      "delay": 2,
+      "sources": [
+        51,
+        95
+      ]
+    },
+    {
+      "gate_type": "nand",
+      "truth_table": 65530,
+      "delay": 2,
+      "sources": [
+        15,
+        85
+      ]
+    },
+    {
+      "gate_type": "or",
+      "truth_table": 191,
+      "sources": [
+        15,
+        51,
+        128
+      ]
+    },
+    {
+      "gate_type": "or",
+      "truth_table": 223,
+      "sources": [
+        15,
+        85,
+        128
+      ]
+    },
+    {
+      "gate_type": "nand",
+      "truth_table": 96,
+      "delay": 4,
+      "sources": [
+        191,
+        223
+      ]
+    },
+    {
+      "gate_type": "or",
+      "truth_table": 247,
+      "sources": [
+        51,
+        85,
+        128
+      ]
+    },
+    {
+      "gate_type": "or",
+      "truth_table": 254,
+      "sources": [
+        236,
+        250
+      ]
+    },
+    {
+      "gate_type": "nand",
+      "truth_table": 9,
+      "delay": 4,
+      "sources": [
+        247,
+        254
+      ]
+    },
+    {
+      "gate_type": "nand",
+      "truth_table": 23,
+      "delay": 4,
+      "sources": [
+        236,
+        250
+      ]
+    }
+  ]
+}

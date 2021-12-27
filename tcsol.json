@@ -1,0 +1,68 @@
+{
+  "$id": "tcsol.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TC Solution",
+  "type": "object",
+  "required": [
+    "inputs",
+    "outputs",
+    "gates"
+  ],
+  "properties": {
+    "inputs": {
+      "type": "array",
+      "description": "Which input TT this solution expects",
+      "items": {
+        "$ref": "#/$defs/truth_table"
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "description": "Which output TT this solution produces",
+      "items": {
+        "$ref": "#/$defs/truth_table"
+      }
+    },
+    "gates": {
+      "description": "Which gates are part of this solution",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/gate"
+      }
+    }
+  },
+  "$defs": {
+    "truth_table": {
+      "type": "number",
+      "multipleOf": 1,
+      "minimum": 0
+    },
+    "gate": {
+      "type": "object",
+      "required": [
+        "gate_type",
+        "truth_table"
+      ],
+      "properties": {
+        "gate_type": {
+          "type": "string",
+          "enum": ["nand", "or", "input", "output", "not"]
+        },
+        "truth_table": {
+          "$ref": "#/$defs/truth_table"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/truth_table"
+          }
+        },
+        "delay": {
+          "type": "number",
+          "multipleOf": 2,
+          "minimum": 0
+        }
+      }
+    }
+  }
+}
