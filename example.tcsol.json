@@ -1,5 +1,6 @@
 {
   "$schema": "tcsol.json",
+  "input_count": 3,
   "inputs": [
     0,
     15,
@@ -14,14 +15,6 @@
   "gates": [
     {
       "gate_type": "or",
-      "truth_table": 105,
-      "sources": [
-        9,
-        96
-      ]
-    },
-    {
-      "gate_type": "or",
       "truth_table": 127,
       "sources": [
         15,
@@ -31,7 +24,7 @@
     },
     {
       "gate_type": "nand",
-      "truth_table": 65408,
+      "truth_table": 128,
       "delay": 2,
       "sources": [
         127,
@@ -48,7 +41,7 @@
     },
     {
       "gate_type": "nand",
-      "truth_table": 65516,
+      "truth_table": 236,
       "delay": 2,
       "sources": [
         51,
@@ -57,7 +50,7 @@
     },
     {
       "gate_type": "nand",
-      "truth_table": 65530,
+      "truth_table": 250,
       "delay": 2,
       "sources": [
         15,
@@ -124,6 +117,14 @@
       "sources": [
         236,
         250
+      ]
+    },
+    {
+      "gate_type": "or",
+      "truth_table": 105,
+      "sources": [
+        9,
+        96
       ]
     }
   ]
