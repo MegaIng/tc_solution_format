@@ -76,6 +76,14 @@
       ]
     },
     {
+      "gate_type": "or",
+      "truth_table": 105,
+      "sources": [
+        9,
+        96
+      ]
+    },
+    {
       "gate_type": "nand",
       "truth_table": 96,
       "delay": 4,
@@ -117,14 +125,6 @@
       "sources": [
         236,
         250
-      ]
-    },
-    {
-      "gate_type": "or",
-      "truth_table": 105,
-      "sources": [
-        9,
-        96
       ]
     }
   ]
