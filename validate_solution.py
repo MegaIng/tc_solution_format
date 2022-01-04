@@ -57,6 +57,16 @@ class Validator:
                     require("Nand Gate", expected, left)
                     require("Nand Gate", expected, right)
                     tts.add(expected)
+                case {"gate_type": "not", "truth_table": expected, "sources": [source]}:
+                    expected = check_tt(expected)
+                    source = check_tt(source)
+                    if (v := (~source) & self.mask) != expected:
+                        raise ValidationError(
+                            f"Not Gate failed to validated. Claims to produce {self.f(expected)} from "
+                            f"``NOT {self.f(source)}``, but that is actually {v}"
+                        )
+                    require("Not Gate", expected, source)
+                    tts.add(expected)
                 case {"gate_type": "or", "truth_table": expected, "sources": [*sources]}:
                     expected = check_tt(expected)
                     *sources, = map(check_tt, sources)
@@ -112,6 +122,8 @@ class Validator:
 
         by_tt = {gate["truth_table"]: gate for gate in tcsol["gates"]}
 
+        k = 2 ** tcsol["input_count"]
+
         done = set()
         queue = list(tcsol["outputs"])
         while queue:
@@ -123,7 +135,7 @@ class Validator:
                 c = "#90EE90"
                 if current in tcsol["outputs"]:
                     c = "#9090EE"
-                dot.add_node(pydot.Node(str(current), label=f'Input:\n{current:016b}', fillcolor=c, style="filled"))
+                dot.add_node(pydot.Node(str(current), label=f'Input:\n{current:0{k}b}', fillcolor=c, style="filled"))
             else:
                 gate = by_tt[current]
                 gt = gate["gate_type"]
@@ -133,12 +145,11 @@ class Validator:
                     c = "#EE9090"
                 else:
                     c = "#FFFFFF"
-                dot.add_node(pydot.Node(str(current), label=f'{gt}:\n{current:016b}', fillcolor=c, style="filled"))
+                dot.add_node(pydot.Node(str(current), label=f'{gt}:\n{current:0{k}b}', fillcolor=c, style="filled"))
                 for source in gate["sources"]:
                     dot.add_edge(pydot.Edge(str(source), str(current)))
                     if source not in done: queue.append(source)
         return dot
-
 
 
 def validate(tcsol):
@@ -149,4 +160,4 @@ def validate(tcsol):
     validator.to_pydot(tcsol).write_png("test.png")
 
 
-validate(json.load(open("other.tcsol.json")))
+validate(json.load(open("es_fa_6_4.tcsol.json")))

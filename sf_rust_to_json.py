@@ -59,7 +59,6 @@ Gate { truth_table: 23, delay: 4, gate_type: Or(64) }]
 
 data = ToJson().transform(tree)
 
-
 inputs = [0, 0b0000_1111, 0b0011_0011, 0b0101_0101, 0b1111_1111]
 outputs = [0b0110_1001, 0b0001_0111]
 
